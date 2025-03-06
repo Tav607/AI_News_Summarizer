@@ -1,0 +1,6 @@
+[API]
+api_key = your_api_key_here
+model_id = your_model_id_here
+
+[Processing]
+batch_size = 10 
