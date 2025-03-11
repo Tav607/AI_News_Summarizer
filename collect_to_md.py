@@ -41,13 +41,18 @@ def fetch_markdown(client, model_id, url, batch_idx):
         return (batch_idx, None, str(e))
 
 
-def main(input_txt, output_md=None):
+def main(input_txt, output_md=None, progress_callback=None):
     """
     从 input_txt 文件读取每行 URL，利用多线程并行调用 LLM Bot 接口获取 Markdown 文本并合并，
     最终输出为一个 output_md 文件（纯 Markdown）。
     从 config.txt 文件读取 API Key、model ID 和处理参数。
     
     如果未指定 output_md，则使用默认路径和文件名：./output/AI_news_summary_yyyymmdd_hhmmss.md
+    
+    参数:
+        input_txt: 输入文件路径，包含URL列表
+        output_md: 输出Markdown文件路径
+        progress_callback: 进度回调函数，用于实时更新进度信息
     """
     # 如果未指定输出文件，则使用默认路径和文件名
     if output_md is None:
@@ -62,7 +67,10 @@ def main(input_txt, output_md=None):
 
     # 1. 从配置文件读取配置
     if not os.path.exists("config.txt"):
-        print("配置文件 config.txt 不存在！请检查。")
+        message = "配置文件 config.txt 不存在！请检查。"
+        print(message)
+        if progress_callback:
+            progress_callback(message)
         sys.exit(1)
 
     config = configparser.ConfigParser()
@@ -80,7 +88,10 @@ def main(input_txt, output_md=None):
 
     # 3. 读取包含 URL 的文件
     if not os.path.exists(input_txt):
-        print(f"输入文件 {input_txt} 不存在！")
+        message = f"输入文件 {input_txt} 不存在！"
+        print(message)
+        if progress_callback:
+            progress_callback(message)
         sys.exit(1)
 
     with open(input_txt, "r", encoding="utf-8") as f:
@@ -88,7 +99,10 @@ def main(input_txt, output_md=None):
 
     total_urls = len(urls)
     total_batches = math.ceil(total_urls / batch_size)
-    print(f"\n开始处理，共{total_urls}个URL，分{total_batches}批进行（每批{batch_size}个）...\n")
+    message = f"\n开始处理，共{total_urls}个URL，分{total_batches}批进行（每批{batch_size}个）...\n"
+    print(message)
+    if progress_callback:
+        progress_callback(message)
 
     # 4. 并行调用 API
     results = []  # 用于存放 (idx, md_text) 的结果
@@ -100,7 +114,10 @@ def main(input_txt, output_md=None):
             current_batch_size = len(batch_urls)
             remaining_batches = total_batches - batch - 1
             
-            print(f"正在处理第{batch+1}批，共{current_batch_size}个URL，还剩{remaining_batches}批")
+            message = f"正在处理第{batch+1}批，共{current_batch_size}个URL，还剩{remaining_batches}批"
+            print(message)
+            if progress_callback:
+                progress_callback(message)
             
             future_to_idx = {}
             for i, url in enumerate(batch_urls):
@@ -112,22 +129,37 @@ def main(input_txt, output_md=None):
                 try:
                     (ret_idx, md_text, err_msg) = future.result()
                     if err_msg:
-                        print(f"错误: {err_msg}")
+                        error_message = f"错误: {err_msg}"
+                        print(error_message)
+                        if progress_callback:
+                            progress_callback(error_message)
                         continue
                     results.append((ret_idx, md_text))
                 except Exception as e:
-                    print(f"错误: {e}")
+                    error_message = f"错误: {e}"
+                    print(error_message)
+                    if progress_callback:
+                        progress_callback(error_message)
 
-            print(f"第{batch+1}批处理完成")
+            batch_complete_message = f"第{batch+1}批处理完成"
+            print(batch_complete_message)
+            if progress_callback:
+                progress_callback(batch_complete_message)
 
-    print(f"\n全部处理完成，成功处理 {len(results)}/{total_urls} 个URL\n")
+    completion_message = f"\n全部处理完成，成功处理 {len(results)}/{total_urls} 个URL\n"
+    print(completion_message)
+    if progress_callback:
+        progress_callback(completion_message)
 
     # 5. 按照原先顺序 (idx) 排序并合并所有 Markdown
     results.sort(key=lambda x: x[0])
     merged_md = "\n\n".join(r[1] for r in results if r[1])
 
     if not merged_md.strip():
-        print("未获取到任何有效内容，程序结束。")
+        empty_message = "未获取到任何有效内容，程序结束。"
+        print(empty_message)
+        if progress_callback:
+            progress_callback(empty_message)
         return
 
     # 6. 将合并后的 Markdown 内容写入 .md 文件
@@ -139,10 +171,16 @@ def main(input_txt, output_md=None):
             
         with open(output_md, "w", encoding="utf-8") as f:
             f.write(merged_md)
-        print(f"已生成Markdown文件：{output_md}")
+        file_message = f"已生成Markdown文件：{output_md}"
+        print(file_message)
+        if progress_callback:
+            progress_callback(file_message)
         return output_md
     except Exception as e:
-        print(f"写入文件失败: {e}")
+        error_message = f"写入文件失败: {e}"
+        print(error_message)
+        if progress_callback:
+            progress_callback(error_message)
 
 if __name__ == "__main__":
     """

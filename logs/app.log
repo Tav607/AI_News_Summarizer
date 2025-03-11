@@ -1,0 +1,14 @@
+[2025-03-11 20:04:06] INFO in app: ==================================================
+[2025-03-11 20:04:06] INFO in app: AI News Processor 启动中...
+[2025-03-11 20:04:06] INFO in app: 访问 http://localhost:5000 开始使用应用
+[2025-03-11 20:04:06] INFO in app: ==================================================
+[2025-03-11 20:04:06] WARNING in _internal:  * Debugger is active!
+[2025-03-11 20:04:06] INFO in _internal:  * Debugger PIN: 125-250-527
+[2025-03-11 20:04:16] INFO in _internal:  * Detected change in 'D:\\Personal\\6.Coding\\AI_news_cursor\\app.py', reloading
+[2025-03-11 20:04:24] INFO in app: ==================================================
+[2025-03-11 20:04:24] INFO in app: AI News Processor 启动中...
+[2025-03-11 20:04:24] INFO in app: 访问 http://localhost:5000 开始使用应用
+[2025-03-11 20:04:24] INFO in app: ==================================================
+[2025-03-11 20:04:24] WARNING in _internal:  * Debugger is active!
+[2025-03-11 20:04:24] INFO in _internal:  * Debugger PIN: 125-250-527
+[2025-03-11 20:04:30] INFO in _internal:  * Detected change in 'D:\\Personal\\6.Coding\\AI_news_cursor\\app.py', reloading

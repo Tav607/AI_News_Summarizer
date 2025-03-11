@@ -34,8 +34,21 @@ project_goal.md
 # Input and output directories
 input/*
 output/*
+uploads/*
 !input/.gitkeep
-!output/.gitkeep !input/example_urls.txt
+!output/.gitkeep
+!input/example_urls.txt
 !output/example_highlight.txt
+!uploads/.gitkeep
+
+# Virtual environment
 venv/
 venv/*
+.env
+.venv
+env/
+ENV/
+
+# OS specific
+.DS_Store
+Thumbs.db

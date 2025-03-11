@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}AI News Tool - Home{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-10">
+        <div class="card shadow">
+            <div class="card-body">
+                <h1 class="card-title text-center mb-4">Welcome to AI News Tool</h1>
+                <p class="lead text-center">A tool for collecting and formatting AI news articles</p>
+                
+                <div class="row mt-5">
+                    <div class="col-md-4">
+                        <div class="card mb-4 h-100">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">API Configuration</h5>
+                                <p class="card-text">Configure your API key and model ID for accessing AI services.</p>
+                                <a href="{{ url_for('api_config') }}" class="btn btn-primary">Configure API</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="card mb-4 h-100">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">Collect to Markdown</h5>
+                                <p class="card-text">Input URLs to collect and convert content to Markdown format.</p>
+                                <a href="{{ url_for('collect_to_md_route') }}" class="btn btn-primary">Collect Content</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="card mb-4 h-100">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">Markdown to PDF</h5>
+                                <p class="card-text">Convert Markdown files to PDF with table of contents and highlights.</p>
+                                <a href="{{ url_for('md_to_pdf_route') }}" class="btn btn-primary">Convert to PDF</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-5">
+                    <h3>Getting Started</h3>
+                    <ol>
+                        <li>First, configure your API settings on the <a href="{{ url_for('api_config') }}">API Configuration</a> page.</li>
+                        <li>To collect content from URLs, go to <a href="{{ url_for('collect_to_md_route') }}">Collect to Markdown</a>.</li>
+                        <li>To convert Markdown to PDF with a table of contents, go to <a href="{{ url_for('md_to_pdf_route') }}">Markdown to PDF</a>.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

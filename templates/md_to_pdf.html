@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}AI News Tool - Markdown to PDF{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-10">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h3 class="mb-0">Convert Markdown to PDF</h3>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{{ url_for('md_to_pdf_route') }}" enctype="multipart/form-data">
+                    <div class="mb-4">
+                        <div class="mb-3">
+                            <label for="md_file" class="form-label">Upload Markdown File</label>
+                            <input class="form-control" type="file" id="md_file" name="md_file" accept=".md, .markdown" required>
+                            <div class="form-text">Select a Markdown file to convert to PDF with table of contents.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <div class="mb-3">
+                            <label for="highlight_file" class="form-label">Upload Highlight File (Optional)</label>
+                            <input class="form-control" type="file" id="highlight_file" name="highlight_file" accept=".txt">
+                            <div class="form-text">Optional: Upload a text file with headers to highlight in the table of contents.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="alert alert-info">
+                        <h5>Instructions</h5>
+                        <ul>
+                            <li>Upload a Markdown file (.md) to convert to PDF.</li>
+                            <li>Optionally, upload a highlight file containing headers to highlight in the table of contents.</li>
+                            <li>The highlight file should contain one header per line, exactly as they appear in the Markdown file.</li>
+                            <li>The resulting PDF file will be automatically downloaded when complete.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary">Convert to PDF</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

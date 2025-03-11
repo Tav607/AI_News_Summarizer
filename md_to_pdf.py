@@ -254,6 +254,10 @@ def convert_md_to_pdf(input_file, output_file=None, highlight_file=None):
         # Generate filename with timestamp
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         output_file = os.path.join(output_dir, f"AI_news_summary_{timestamp}.pdf")
+    else:
+        # Ensure output_file has .pdf extension
+        if not output_file.lower().endswith('.pdf'):
+            output_file = f"{output_file}.pdf"
     
     # Read markdown content
     with open(input_file, 'r', encoding='utf-8') as f:

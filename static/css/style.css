@@ -1,0 +1,103 @@
+/* Custom styles for AI News Tool */
+
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.card {
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+.card-header {
+    font-weight: 600;
+}
+
+.card-body {
+    padding: 2rem;
+}
+
+.navbar {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.btn-primary {
+    background-color: #385D4E;
+    border-color: #385D4E;
+    padding: 0.5rem 1.5rem;
+    font-weight: 500;
+}
+
+.btn-primary:hover {
+    background-color: #2c4a3e;
+    border-color: #243c33;
+}
+
+footer {
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Form styling */
+.form-control:focus {
+    border-color: #385D4E;
+    box-shadow: 0 0 0 0.25rem rgba(56, 93, 78, 0.25);
+}
+
+textarea.form-control {
+    min-height: 150px;
+}
+
+/* Alert styling */
+.alert {
+    border-radius: 8px;
+}
+
+/* Card hover effect */
+.card.mb-4:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .card-body {
+        padding: 1.5rem;
+    }
+}
+
+/* Custom color overrides for Bootstrap */
+.bg-primary {
+    background-color: #385D4E !important;
+}
+
+.text-primary {
+    color: #385D4E !important;
+}
+
+.border-primary {
+    border-color: #385D4E !important;
+}
+
+/* Alert info styling */
+.alert-info {
+    background-color: rgba(56, 93, 78, 0.1);
+    border-color: rgba(56, 93, 78, 0.2);
+    color: #385D4E;
+}
+
+/* Link styling */
+a {
+    color: #385D4E;
+}
+
+a:hover {
+    color: #2c4a3e;
+} 
