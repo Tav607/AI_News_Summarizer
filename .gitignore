@@ -37,3 +37,5 @@ output/*
 !input/.gitkeep
 !output/.gitkeep !input/example_urls.txt
 !output/example_highlight.txt
+venv/
+venv/*
