@@ -12,13 +12,12 @@
 
 ## 依赖项
 
-在使用此项目前，请确保安装以下依赖：
+您需要先自行安装wkhtmltopdf（用于PDF生成）：
+- Windows: 从 [wkhtmltopdf.org](https://wkhtmltopdf.org/downloads.html) 下载并安装（注意：请直接安装在默认目录，即'C:\Program Files\'）
+- macOS: `brew install wkhtmltopdf`
+- Linux: `sudo apt-get install wkhtmltopdf`
 
-```bash
-pip install -r requirements.txt
-```
-
-依赖项包括：
+其他python依赖项包括：
 ```
 markdown2==2.4.10
 pdfkit==1.0.0
@@ -29,10 +28,10 @@ werkzeug==2.3.7
 flask-wtf==1.2.1
 ```
 
-此外，您需要安装wkhtmltopdf（用于PDF生成）：
-- Windows: 从 [wkhtmltopdf.org](https://wkhtmltopdf.org/downloads.html) 下载并安装
-- macOS: `brew install wkhtmltopdf`
-- Linux: `sudo apt-get install wkhtmltopdf`
+以上python依赖项在使用下文中的“方法A.使用批处理文件快速启动”时会自动安装；若希望使用方法B/C，则需要自行安装：
+```
+pip install -r requirements.txt
+```
 
 ## 配置
 
